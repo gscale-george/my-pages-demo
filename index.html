@@ -1,0 +1,49 @@
+<!doctype html>
+<!--
+  pages-demo フォールバック見本。
+  参考サイトを取り込めなかったときに、これを下敷きにする。
+  神谷 乗治 GScale × 大丸開発 — ハンズオンで作った初めてのホームページ コーポレート本部に所属しています。大丸開発のハンズオンで、GitHub Pages を使って自分のホームページを公開してみました。 を参加者本人の内容に置換して使う。
+-->
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>神谷 乗治 のホームページ</title>
+  <style>
+    :root { --bg: #f7fafc; --ink: #1a365d; --accent: #3182ce; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: system-ui, -apple-system, "Segoe UI", "Hiragino Sans", sans-serif;
+      color: var(--ink); background: var(--bg); line-height: 1.7;
+    }
+    header {
+      background: linear-gradient(135deg, var(--ink), var(--accent));
+      color: #fff; padding: 4rem 1.5rem; text-align: center;
+    }
+    header h1 { margin: 0 0 .5rem; font-size: clamp(1.8rem, 5vw, 3rem); }
+    header p { margin: 0; opacity: .9; font-size: 1.1rem; }
+    main { max-width: 720px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+    section { background: #fff; border-radius: 12px; padding: 1.5rem 1.75rem; margin-bottom: 1.25rem;
+              box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+    h2 { color: var(--accent); margin-top: 0; }
+    footer { text-align: center; color: #718096; padding: 2rem 1rem; font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>神谷 乗治</h1>
+    <p>GScale × 大丸開発 — ハンズオンで作った初めてのホームページ</p>
+  </header>
+  <main>
+    <section>
+      <h2>はじめまして</h2>
+      <p>コーポレート本部に所属しています。大丸開発のハンズオンで、GitHub Pages を使って自分のホームページを公開してみました。</p>
+    </section>
+    <section>
+      <h2>このサイトについて</h2>
+      <p>ハンズオンで作った、わたしの最初のホームページです。GitHub Pages で公開しています。</p>
+    </section>
+  </main>
+  <footer>© 神谷 乗治</footer>
+</body>
+</html>
