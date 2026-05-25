@@ -1,49 +1,164 @@
 <!doctype html>
 <!--
-  pages-demo フォールバック見本。
-  参考サイトを取り込めなかったときに、これを下敷きにする。
-  神谷 乗治 GScale × 大丸開発 — ハンズオンで作った初めてのホームページ コーポレート本部に所属しています。大丸開発のハンズオンで、GitHub Pages を使って自分のホームページを公開してみました。 を参加者本人の内容に置換して使う。
+  ============================================================
+  pages-demo 見本テンプレート（不動産LP風 / daimaru-fudosan.com を下敷き）
+  ハンズオンでは、ここを少しずつ「改変」して自分のサイトに育てる。
+  改変しやすいよう、変える場所を【①〜⑤】のコメントで示している。
+  生成時は カミヤ ホーム 家族の毎日を、いちばん近くで支える家を。 岐阜エリアで、より良い住まいをより安く、誠実に。ハンズオンで作った私のサイトです。 を本人の内容に置換する。
+  ============================================================
 -->
 <html lang="ja">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>神谷 乗治 のホームページ</title>
+  <title>カミヤ ホーム</title>
+  <meta name="description" content="岐阜エリアで、より良い住まいをより安く、誠実に。ハンズオンで作った私のサイトです。" />
   <style>
-    :root { --bg: #f7fafc; --ink: #1a365d; --accent: #3182ce; }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; font-family: system-ui, -apple-system, "Segoe UI", "Hiragino Sans", sans-serif;
-      color: var(--ink); background: var(--bg); line-height: 1.7;
+    /* 【②色を変える】ここの3色を変えるだけでサイト全体の印象が変わる */
+    :root{
+      --accent:#e8380d;   /* メインカラー（大丸＝朱赤） */
+      --ink:#121212;      /* 文字色 */
+      --bg:#f6f7f9;       /* 背景色 */
+      --card:#ffffff;
+      --muted:#6b7280;
     }
-    header {
-      background: linear-gradient(135deg, var(--ink), var(--accent));
-      color: #fff; padding: 4rem 1.5rem; text-align: center;
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","游ゴシック","Yu Gothic",YuGothic,"ヒラギノ角ゴ Pro","Hiragino Kaku Gothic Pro",Meiryo,sans-serif;
+      color:var(--ink);background:var(--bg);line-height:1.8;-webkit-font-smoothing:antialiased;
     }
-    header h1 { margin: 0 0 .5rem; font-size: clamp(1.8rem, 5vw, 3rem); }
-    header p { margin: 0; opacity: .9; font-size: 1.1rem; }
-    main { max-width: 720px; margin: 0 auto; padding: 2.5rem 1.5rem; }
-    section { background: #fff; border-radius: 12px; padding: 1.5rem 1.75rem; margin-bottom: 1.25rem;
-              box-shadow: 0 1px 3px rgba(0,0,0,.08); }
-    h2 { color: var(--accent); margin-top: 0; }
-    footer { text-align: center; color: #718096; padding: 2rem 1rem; font-size: .9rem; }
+    .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+
+    /* ヘッダー（追従） */
+    header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
+      border-bottom:1px solid #eaecef}
+    .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{font-weight:800;font-size:1.15rem;letter-spacing:.02em}
+    .brand b{color:var(--accent)}
+    .nav nav a{margin-left:22px;text-decoration:none;color:var(--ink);font-size:.92rem;font-weight:600}
+    .nav nav a:hover{color:var(--accent)}
+    @media(max-width:640px){.nav nav{display:none}}
+
+    /* ヒーロー */
+    .hero{position:relative;color:#fff;text-align:center;padding:120px 20px 130px;
+      background:linear-gradient(135deg,#1b1b1b 0%,#3a1109 60%,var(--accent) 140%)}
+    .hero .badge{display:inline-block;background:var(--accent);color:#fff;font-weight:700;
+      font-size:.8rem;letter-spacing:.08em;padding:6px 14px;border-radius:999px;margin-bottom:22px}
+    .hero h1{font-size:clamp(2rem,6vw,3.6rem);font-weight:800;line-height:1.25;margin-bottom:18px}
+    .hero p{font-size:clamp(1rem,2.4vw,1.25rem);opacity:.92;max-width:640px;margin:0 auto 32px}
+    .btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;
+      padding:14px 34px;border-radius:8px;transition:transform .15s,box-shadow .15s;box-shadow:0 8px 24px rgba(232,56,13,.35)}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(232,56,13,.45)}
+
+    /* 数字（信頼の指標） */
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:-58px auto 0;position:relative;z-index:2}
+    .stat{background:var(--card);border-radius:14px;padding:26px 18px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+    .stat .num{font-size:2.2rem;font-weight:800;color:var(--accent);line-height:1}
+    .stat .lbl{font-size:.85rem;color:var(--muted);margin-top:8px}
+    @media(max-width:640px){.stats{grid-template-columns:1fr}}
+
+    section.block{padding:74px 0}
+    .sec-ttl{text-align:center;margin-bottom:44px}
+    .sec-ttl span{color:var(--accent);font-weight:800;letter-spacing:.12em;font-size:.82rem}
+    .sec-ttl h2{font-size:clamp(1.5rem,4vw,2.1rem);font-weight:800;margin-top:6px}
+
+    /* 物件カード（【③カードを足す／消す】 .card をコピペで増やせる） */
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    @media(max-width:860px){.cards{grid-template-columns:1fr}}
+    .card{background:var(--card);border-radius:14px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.07);
+      transition:transform .18s,box-shadow .18s}
+    .card:hover{transform:translateY(-6px);box-shadow:0 16px 36px rgba(0,0,0,.13)}
+    .card .ph{height:170px;background:linear-gradient(135deg,#e9edf2,#cdd5de);display:flex;align-items:center;
+      justify-content:center;color:#9aa6b2;font-weight:700}
+    .card .body{padding:18px 20px}
+    .card .tag{display:inline-block;background:#fdeceA;color:var(--accent);font-size:.72rem;font-weight:700;
+      padding:3px 10px;border-radius:999px;margin-bottom:8px}
+    .card h3{font-size:1.05rem;margin-bottom:6px}
+    .card .meta{color:var(--muted);font-size:.85rem}
+
+    /* CTA */
+    .cta{background:var(--ink);color:#fff;text-align:center;padding:64px 20px}
+    .cta h2{font-size:clamp(1.4rem,4vw,2rem);margin-bottom:10px}
+    .cta p{opacity:.8;margin-bottom:26px}
+
+    footer{background:#0c0c0c;color:#8b8f96;text-align:center;padding:32px 20px;font-size:.85rem}
   </style>
 </head>
 <body>
-  <header>
-    <h1>神谷 乗治</h1>
-    <p>GScale × 大丸開発 — ハンズオンで作った初めてのホームページ</p>
+
+  <!-- 【①まず会社名を変える】brand とフッターの社名 -->
+  <header class="nav">
+    <div class="wrap">
+      <div class="brand"><b>カミヤ ホーム</b></div>
+      <nav>
+        <a href="#works">分譲・物件</a>
+        <a href="#event">イベント</a>
+        <a href="#column">コラム</a>
+        <a href="#contact">お問い合わせ</a>
+      </nav>
+    </div>
   </header>
-  <main>
-    <section>
-      <h2>はじめまして</h2>
-      <p>コーポレート本部に所属しています。大丸開発のハンズオンで、GitHub Pages を使って自分のホームページを公開してみました。</p>
-    </section>
-    <section>
-      <h2>このサイトについて</h2>
-      <p>ハンズオンで作った、わたしの最初のホームページです。GitHub Pages で公開しています。</p>
-    </section>
-  </main>
-  <footer>© 神谷 乗治</footer>
+
+  <!-- 【①キャッチコピーを変える】 -->
+  <section class="hero">
+    <div class="badge">着工件数 9年連続 No.1</div>
+    <h1>家族の毎日を、いちばん近くで支える家を。</h1>
+    <p>岐阜エリアで、より良い住まいをより安く、誠実に。ハンズオンで作った私のサイトです。</p>
+    <a class="btn" href="#contact">無料で相談する</a>
+  </section>
+
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><div class="num">9<span style="font-size:1rem">年連続</span></div><div class="lbl">着工件数エリアNo.1</div></div>
+      <div class="stat"><div class="num">2,000<span style="font-size:1rem">棟+</span></div><div class="lbl">これまでの施工実績</div></div>
+      <div class="stat"><div class="num">99<span style="font-size:1rem">%</span></div><div class="lbl">お客様満足度</div></div>
+    </div>
+  </div>
+
+  <!-- 物件：カードはコピペで増減できる（【③】） -->
+  <section class="block" id="works">
+    <div class="wrap">
+      <div class="sec-ttl"><span>OUR HOUSES</span><h2>分譲・新着物件</h2></div>
+      <div class="cards">
+        <div class="card"><div class="ph">PHOTO</div><div class="body"><span class="tag">新着</span><h3>ダイマルタウン 笠木5 A棟</h3><div class="meta">岐阜市 ／ 3,480万円 ／ 4LDK</div></div></div>
+        <div class="card"><div class="ph">PHOTO</div><div class="body"><span class="tag">人気</span><h3>ダイマルタウン 土田4 B棟</h3><div class="meta">可児市 ／ 3,180万円 ／ 4LDK</div></div></div>
+        <div class="card"><div class="ph">PHOTO</div><div class="body"><span class="tag">残り1棟</span><h3>ダイマルタウン 中鶉10 A棟</h3><div class="meta">岐阜市 ／ 3,680万円 ／ 4LDK</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- イベント -->
+  <section class="block" id="event" style="background:#fff">
+    <div class="wrap">
+      <div class="sec-ttl"><span>EVENT</span><h2>完成見学会・イベント情報</h2></div>
+      <div class="cards">
+        <div class="card"><div class="ph">EVENT</div><div class="body"><span class="tag">6/6・6/7</span><h3>一宮市西五城4 完成見学会</h3><div class="meta">予約制 ／ 10:00-17:00</div></div></div>
+        <div class="card"><div class="ph">EVENT</div><div class="body"><span class="tag">5/30・5/31</span><h3>岐阜市茜部菱野 完成見学会</h3><div class="meta">予約制 ／ 10:00-17:00</div></div></div>
+        <div class="card"><div class="ph">EVENT</div><div class="body"><span class="tag">5/23・5/24</span><h3>岐阜市中鶉 完成見学会</h3><div class="meta">予約制 ／ 10:00-17:00</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- コラム（【④セクションを足す】例：ここを複製して「お客様の声」等を作れる） -->
+  <section class="block" id="column">
+    <div class="wrap">
+      <div class="sec-ttl"><span>COLUMN</span><h2>家づくりコラム</h2></div>
+      <div class="cards">
+        <div class="card"><div class="ph">COLUMN</div><div class="body"><h3>賃貸と持ち家どっちがお得？</h3><div class="meta">メリット・デメリットを解説</div></div></div>
+        <div class="card"><div class="ph">COLUMN</div><div class="body"><h3>戸建てとマンションの選び方</h3><div class="meta">判断基準を整理</div></div></div>
+        <div class="card"><div class="ph">COLUMN</div><div class="body"><h3>2026年 岐阜県 地価ランキング</h3><div class="meta">公示地価の推移も紹介</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 【⑤連絡先を自分のものに】 -->
+  <section class="cta" id="contact">
+    <h2>家づくりのご相談は無料です</h2>
+    <p>岐阜エリアで、より良い住まいをより安く、誠実に。ハンズオンで作った私のサイトです。</p>
+    <a class="btn" href="mailto:info@example.com">メールで相談する</a>
+  </section>
+
+  <footer>© カミヤ ホーム — ハンズオンで作った GitHub Pages サイト</footer>
 </body>
 </html>
